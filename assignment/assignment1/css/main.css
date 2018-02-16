@@ -8,6 +8,31 @@ body {
     font-family: helvetica, arial, sans-serif;
 }
 
+h2, button{
+  display: inline-block;
+  vertical-align: middle;
+  margin: 10px 0;
+}
+
+button {
+  width: 80px;
+  height: 20px;
+  text-align: center;
+  font-size: 12px;
+}
+
+p1 {
+  font-size: 16px;
+}
+
+p2 {
+  color: 	#A0A0A0
+}
+
+p {
+  font-size: 14px;
+}
+
 .map {
     position: absolute;
     right: 0px;

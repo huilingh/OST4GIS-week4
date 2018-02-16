@@ -61,13 +61,14 @@ var printMenu = function(foodList) {
 
 console.log('List of baked goods', bakedGoods);
 
+
 /* =====================
 Is printMenu a function? Answer this question with underscore. Should evaluate
 to true.
 ===================== */
 
 var query1;
-
+query1 = _.isFunction(printMenu);
 console.log('printMenu is a function:', query1);
 
 /* =====================
@@ -76,7 +77,7 @@ to true.
 ===================== */
 
 var query2;
-
+query2 = _.isArray(bakedGoods);
 console.log('bakedGoods is an array:', query2);
 
 /* =====================
@@ -85,7 +86,7 @@ underscore. Should evaluate to true.
 ===================== */
 
 var query3;
-
+query3 = _.isObject(bakedGoods[1]);
 console.log('The first element in bakedGoods is an object:', query3);
 
 /* =====================
@@ -93,7 +94,7 @@ Use _.where to return all cakes. Or bread. Whichever is your favorite.
 ===================== */
 
 var query4;
-
+query4 = _.where(bakedGoods, {'type': 'Cake'});
 console.log('All bread. Or cakes:', query4);
 
 /* =====================
@@ -101,7 +102,7 @@ Use _.filter to return all baked goods that cost more than $4.
 ===================== */
 
 var query5;
-
+query5 = _.filter(bakedGoods, function(obj) {return obj.price > 4});
 console.log('More than $4:', query5);
 
 /* =====================
@@ -109,7 +110,7 @@ Use _.sortBy to order the list by inventory (from lowest to highest).
 ===================== */
 
 var query6;
-
+query6 =_.sortBy(bakedGoods, 'inventory');
 console.log('Sorted by inventory (lowest to highest):', query6);
 
 /* =====================
@@ -117,7 +118,7 @@ Use _.groupBy to organize the baked goods by type.
 ===================== */
 
 var query7;
-
+query7 = _.groupBy(bakedGoods, 'type');
 console.log('Grouped by type:', query7);
 
 /* =====================
@@ -139,8 +140,18 @@ Sourdough ... $5.29
 Rye ... $5.09
 Whole Wheat ... $4.49
 ===================== */
+var printMenu = function(foodList) {
+  console.log("Cake");
+  _.each(foodList.Cake, function(arr) {
+    console.log(arr.name + ' ... $' + arr.price);
+  });
+  console.log("Bread");
+  _.each(foodList.Bread, function(arr) {
+    console.log(arr.name + ' ... $' + arr.price);
+  });
+};
 
-// printMenu(query7);
+printMenu(query7);
 
 /* =====================
 Stretch Goal:
@@ -154,3 +165,9 @@ rendering process.
 Use _.template to render the price lines of the menu (Carrot ... $3.49).
 
 ===================== */
+
+var foodname = _.template("<% print(name + ' ... $'); %>")
+var foodprice = _.template("<% print(price); %>")
+_.each(bakedGoods, function(food) {
+  console.log(foodname({name: food.name}) + foodprice({price: food.price}))
+})
